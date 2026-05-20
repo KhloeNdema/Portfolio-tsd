@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ordinateur Store — Votre Tech de Confiance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #f5f2ee;
+      --bg2: #edeae4;
+      --dark: #1a1814;
+      --dark2: #2d2a25;
+      --accent: #e84c1e;
+      --accent2: #f07a56;
+      --text: #1a1814;
+      --muted: #8a8580;
+      --white: #fdfcfa;
+      --border: #ddd9d2;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--dark);
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .cart-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .cart-btn:hover { background: var(--accent2); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--dark);
+      min-height: 88vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-left {
+      padding: 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232,76,30,0.15);
+      border: 1px solid rgba(232,76,30,0.3);
+      color: var(--accent2);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      margin-bottom: 32px;
+      width: fit-content;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: blink 1.5s ease infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(44px, 5.5vw, 80px);
+      font-weight: 800;
+      line-height: 1.0;
+      color: var(--white);
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    h1 .highlight {
+      color: var(--accent);
+      display: block;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.5);
+      max-width: 400px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 16px 36px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 16px 36px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-ghost:hover { border-color: white; color: white; }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 64px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    .hero-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(232,76,30,0.15) 0%, transparent 70%);
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .laptop-showcase {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .laptop-emoji {
+      width: 420px;
+      max-width: 90%;
+      display: block;
+      border-radius: 12px;
+      object-fit: cover;
+      filter: drop-shadow(0 32px 64px rgba(232,76,30,0.3));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-16px); }
+    }
+
+    .price-tag {
+      position: absolute;
+      top: 20%;
+      right: -20px;
+      background: var(--accent);
+      color: white;
+      padding: 12px 20px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+    }
+
+    .price-tag .price-label { font-size: 10px; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }
+    .price-tag .price-amount { font-size: 24px; line-height: 1; }
+
+    /* ── CATEGORIES ── */
+    .categories {
+      padding: 80px 48px;
+      background: var(--bg2);
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 48px;
+    }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .cat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cat-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .cat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+      border-color: var(--accent);
+    }
+
+    .cat-card:hover::after { transform: scaleX(1); }
+
+    .cat-img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .cat-card:hover .cat-img { transform: scale(1.05); }
+
+    .cat-info { padding: 20px 16px; }
+
+    .cat-icon { font-size: 40px; margin-bottom: 12px; }
+
+    .cat-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .cat-count { font-size: 12px; color: var(--muted); }
+
+    /* ── PRODUCTS ── */
+    .products {
+      padding: 80px 48px;
+    }
+
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+    }
+
+    .filter-tab {
+      padding: 8px 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--muted);
+    }
+
+    .filter-tab.active, .filter-tab:hover {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.1);
+    }
+
+    .product-img {
+      background: var(--bg2);
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 72px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .product-img img { transform: scale(1.06); }
+
+    .badge-new, .badge-promo {
+      position: absolute;
+      top: 12px; left: 12px;
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+    }
+
+    .badge-new { background: var(--dark); color: white; }
+    .badge-promo { background: var(--accent); color: white; }
+
+    .product-info { padding: 24px; }
+
+    .product-brand {
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .product-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .product-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .spec-chip {
+      font-size: 11px;
+      background: var(--bg2);
+      color: var(--muted);
+      padding: 3px 10px;
+      border-radius: 2px;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .product-price {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--text);
+    }
+
+    .old-price {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: line-through;
+      display: block;
+      font-weight: 400;
+    }
+
+    .add-btn {
+      background: var(--dark);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .add-btn:hover { background: var(--accent); }
+
+    /* ── PROMO BANNER ── */
+    .promo-banner {
+      margin: 0 48px;
+      background: var(--dark);
+      padding: 64px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .promo-banner::before {
+      content: '';
+      position: absolute;
+      right: -100px; top: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(232,76,30,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .promo-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .promo-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight: 800;
+      color: white;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .promo-sub { color: rgba(255,255,255,0.5); font-size: 14px; }
+
+    .promo-right { text-align: right; flex-shrink: 0; }
+
+    .promo-discount {
+      font-family: 'Syne', sans-serif;
+      font-size: 80px;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: -4px;
+    }
+
+    .promo-discount-label { color: rgba(255,255,255,0.5); font-size: 13px; }
+
+    /* ── WHY US ── */
+    .why-us {
+      padding: 80px 48px;
+      background: var(--bg2);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 48px;
+    }
+
+    .why-card {
+      background: var(--white);
+      padding: 40px 32px;
+      border-left: 3px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .why-card:hover { border-color: var(--accent); }
+
+    .why-icon { font-size: 36px; margin-bottom: 16px; }
+
+    .why-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .why-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.6);
+      padding: 64px 48px 32px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 32px;
+    }
+
+    .footer-brand .logo { font-size: 22px; display: block; margin-bottom: 16px; }
+
+    .footer-brand p { font-size: 13px; line-height: 1.7; max-width: 260px; }
+
+    .footer-col h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: white;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col ul li { margin-bottom: 10px; }
+
+    .footer-col ul a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul a:hover { color: white; }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .footer-bottom .copy { color: rgba(255,255,255,0.3); }
+
+    .footer-socials { display: flex; gap: 16px; }
+
+    .social-btn {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .social-btn:hover { border-color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 80px 24px 48px; }
+      .hero-right { height: 280px; }
+      .laptop-emoji { font-size: 90px; }
+      .categories { padding: 60px 20px; }
+      .cat-grid { grid-template-columns: repeat(2, 1fr); }
+      .products { padding: 60px 20px; }
+      .products-grid { grid-template-columns: 1fr 1fr; }
+      .promo-banner { margin: 0 20px; padding: 40px 32px; grid-template-columns: 1fr; }
+      .why-us { padding: 60px 20px; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      footer { padding: 48px 20px 24px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 520px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .cat-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .products-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Ordinateur<span>Store</span></div>
+  <ul class="nav-links">
+    <li><a href="#categories">Catégories</a></li>
+    <li><a href="#produits">Produits</a></li>
+    <li><a href="#promo">Promotions</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn">🛒 Panier (0)</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">Nouvelle Collection 2025</div>
+    <h1>
+      La Tech<br/>
+      <span class="highlight">à Votre<br/>Portée</span>
+    </h1>
+    <p class="hero-sub">
+      Découvrez notre large sélection d'ordinateurs, laptops et accessoires informatiques aux meilleurs prix de Douala.
+    </p>
+    <div class="hero-cta">
+      <a href="#produits" class="btn-primary">Voir les produits →</a>
+      <a href="#promo" class="btn-ghost">Nos promos</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Produits</div>
+      </div>
+      <div>
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Clients</div>
+      </div>
+      <div>
+        <div class="stat-num">2ans</div>
+        <div class="stat-label">Garantie</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-grid-bg"></div>
+    <div class="laptop-showcase">
+      <img class="laptop-emoji" src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=700&auto=format&fit=crop" alt="Laptop HP" />
+      <div class="price-tag">
+        <div class="price-label">À partir de</div>
+        <div class="price-amount">150 000 F</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categories">
+  <div class="section-title">Explorer par catégorie</div>
+  <h2>Nos Catégories</h2>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <img class="cat-img" src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&auto=format&fit=crop" alt="Laptops"/>
+      <div class="cat-info">
+        <div class="cat-name">Laptops</div>
+        <div class="cat-count">48 articles</div>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img class="cat-img" src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop" alt="PC Bureau"/>
+      <div class="cat-info">
+        <div class="cat-name">PC Bureau</div>
+        <div class="cat-count">32 articles</div>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img class="cat-img" src="https://images.unsplash.com/photo-1527814050087-3793815479db?w=400&auto=format&fit=crop" alt="Accessoires"/>
+      <div class="cat-info">
+        <div class="cat-name">Accessoires</div>
+        <div class="cat-count">120 articles</div>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img class="cat-img" src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=400&auto=format&fit=crop" alt="Imprimantes"/>
+      <div class="cat-info">
+        <div class="cat-name">Imprimantes</div>
+        <div class="cat-count">24 articles</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="produits">
+  <div class="products-header">
+    <div>
+      <div class="section-title">Sélection du moment</div>
+      <h2>Nos Produits Phares</h2>
+    </div>
+    <div class="filter-tabs">
+      <button class="filter-tab active">Tous</button>
+      <button class="filter-tab">Laptops</button>
+      <button class="filter-tab">Bureau</button>
+      <button class="filter-tab">Accessoires</button>
+    </div>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- Product 1 -->
+    <div class="product-card">
+      <div class="product-img">
+        <span class="badge-new">Nouveau</span>
+        <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&auto=format&fit=crop" alt="HP Pavilion 15"/>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">HP</div>
+        <div class="product-name">HP Pavilion 15 — Intel Core i5</div>
+        <div class="product-specs">
+          <span class="spec-chip">8 Go RAM</span>
+          <span class="spec-chip">512 Go SSD</span>
+          <span class="spec-chip">15.6"</span>
+          <span class="spec-chip">Windows 11</span>
+        </div>
+        <div class="product-bottom">
+          <div class="product-price">285 000 F</div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card">
+      <div class="product-img">
+        <span class="badge-promo">-15%</span>
+        <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&auto=format&fit=crop" alt="Dell Inspiron 14"/>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">DELL</div>
+        <div class="product-name">Dell Inspiron 14 — Ryzen 5</div>
+        <div class="product-specs">
+          <span class="spec-chip">16 Go RAM</span>
+          <span class="spec-chip">256 Go SSD</span>
+          <span class="spec-chip">14"</span>
+          <span class="spec-chip">Windows 11</span>
+        </div>
+        <div class="product-bottom">
+          <div>
+            <span class="old-price">250 000 F</span>
+            <div class="product-price">212 500 F</div>
+          </div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&auto=format&fit=crop" alt="Lenovo ThinkCentre"/>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">LENOVO</div>
+        <div class="product-name">Lenovo ThinkCentre — Tour i7</div>
+        <div class="product-specs">
+          <span class="spec-chip">16 Go RAM</span>
+          <span class="spec-chip">1 To HDD</span>
+          <span class="spec-chip">Core i7</span>
+        </div>
+        <div class="product-bottom">
+          <div class="product-price">320 000 F</div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="product-card">
+      <div class="product-img">
+        <span class="badge-new">Nouveau</span>
+        <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&auto=format&fit=crop" alt="Asus VivoBook 15"/>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">ASUS</div>
+        <div class="product-name">Asus VivoBook 15 — i3</div>
+        <div class="product-specs">
+          <span class="spec-chip">4 Go RAM</span>
+          <span class="spec-chip">256 Go SSD</span>
+          <span class="spec-chip">15.6"</span>
+        </div>
+        <div class="product-bottom">
+          <div class="product-price">155 000 F</div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1561112078-7d24e04c3407?w=600&auto=format&fit=crop" alt="Pack Clavier Souris Logitech"/>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">LOGITECH</div>
+        <div class="product-name">Pack Clavier + Souris Sans Fil</div>
+        <div class="product-specs">
+          <span class="spec-chip">Sans fil</span>
+          <span class="spec-chip">Bluetooth</span>
+          <span class="spec-chip">Ergonomique</span>
+        </div>
+        <div class="product-bottom">
+          <div class="product-price">22 000 F</div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 6 -->
+    <div class="product-card">
+      <div class="product-img">
+        <span class="badge-promo">-20%</span>
+        <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&auto=format&fit=crop" alt="Canon PIXMA"/>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">CANON</div>
+        <div class="product-name">Canon PIXMA — Imprimante Couleur</div>
+        <div class="product-specs">
+          <span class="spec-chip">Wi-Fi</span>
+          <span class="spec-chip">Scanner</span>
+          <span class="spec-chip">Couleur</span>
+        </div>
+        <div class="product-bottom">
+          <div>
+            <span class="old-price">60 000 F</span>
+            <div class="product-price">48 000 F</div>
+          </div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROMO BANNER -->
+<div class="promo-banner" id="promo">
+  <div>
+    <div class="promo-label">Offre Limitée</div>
+    <div class="promo-title">Soldes de<br/>Rentrée !</div>
+    <p class="promo-sub">Sur une sélection de laptops et PC de bureau. Offre valable jusqu'au 30 juin 2025.</p>
+    <br/>
+    <a href="#produits" class="btn-primary">Profiter de l'offre →</a>
+  </div>
+  <div class="promo-right">
+    <div class="promo-discount">−20%</div>
+    <div class="promo-discount-label">sur les laptops sélectionnés</div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<section class="why-us">
+  <div class="section-title">Pourquoi nous choisir</div>
+  <h2>Nos Avantages</h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🚚</div>
+      <div class="why-title">Livraison Rapide</div>
+      <div class="why-desc">Livraison dans tout Douala sous 24h. Gratuite à partir de 100 000 FCFA d'achat.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🛡️</div>
+      <div class="why-title">Garantie 2 ans</div>
+      <div class="why-desc">Tous nos produits sont garantis 2 ans. Retour gratuit si défaut constaté.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💳</div>
+      <div class="why-title">Paiement Flexible</div>
+      <div class="why-desc">Mobile Money, virement ou paiement en plusieurs fois disponible.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔧</div>
+      <div class="why-title">SAV & Réparation</div>
+      <div class="why-desc">Service après-vente disponible 6j/7. Techniciens certifiés sur place.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="logo">Ordinateur<span>Store</span></span>
+      <p>Votre spécialiste en informatique à Douala. Qualité, fiabilité et service client au cœur de notre activité.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Boutique</h4>
+      <ul>
+        <li><a href="#">Laptops</a></li>
+        <li><a href="#">PC Bureau</a></li>
+        <li><a href="#">Accessoires</a></li>
+        <li><a href="#">Imprimantes</a></li>
+        <li><a href="#">Promotions</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Informations</h4>
+      <ul>
+        <li><a href="#">À propos</a></li>
+        <li><a href="#">Garantie</a></li>
+        <li><a href="#">Livraison</a></li>
+        <li><a href="#">SAV</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">📍 Douala, Cameroun</a></li>
+        <li><a href="#">📞 +237 6XX XXX XXX</a></li>
+        <li><a href="#">✉️ contact@ordinateurstore.cm</a></li>
+        <li><a href="#">🕐 Lun–Sam : 8h–18h</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="copy">© 2025 Ordinateur Store — Tous droits réservés</div>
+    <div class="footer-socials">
+      <div class="social-btn">f</div>
+      <div class="social-btn">in</div>
+      <div class="social-btn">📱</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Filter tabs
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+
+  // Add to cart feedback
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.textContent = '✓';
+      btn.style.background = '#2a7d3a';
+      setTimeout(() => {
+        btn.textContent = '+';
+        btn.style.background = '';
+      }, 1500);
+    });
+  });
+
+  // Scroll animations
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.product-card, .cat-card, .why-card').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = `opacity 0.5s ease ${i * 0.07}s, transform 0.5s ease ${i * 0.07}s`;
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
